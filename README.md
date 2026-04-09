@@ -30,15 +30,20 @@ cmake -S . -B build
 make -C build -j
 ```
 
+If the build is successful, two executables will be created directly in the `build/` directory:
+
+- `build/PreciseTruck` — the autonomous truck application
+- `build/ControlTower` — the ground control station UI
+
 ## Running the Truck
 
-If the build is successful, an `RCTruck` executable will be created in the `build` directory. You can run it from the project root using:
+You can run PreciseTruck from the project root using:
 
 ```bash
-./build/RCTruck
+./build/PreciseTruck
 ```
 
-The RCTruck has a range of parameters configurable using a JSON file:
+PreciseTruck has a range of parameters configurable using a JSON file:
 
 | Parameter                         | Type     | Default                                       | Description                                                         |
 | --------------------------------- | -------- | --------------------------------------------- | ------------------------------------------------------------------- |
@@ -92,11 +97,28 @@ From the project root directory:
 
 ```bash
 # Use a JSON configuration file
-./build/RCTruck --config config/truck1.json
+./build/PreciseTruck --config config/truck1.json
 
 # Override truck ID and attach trailer
-./build/RCTruck -c config/truck1.json -i 2 -l 26 -a
+./build/PreciseTruck -c config/truck1.json -i 2 -l 26 -a
 ```
+
+## Running ControlTower
+
+[ControlTower](https://github.com/RISE-Dependable-Transport-Systems/ControlTower) is a ground control station UI (built as part of this project) that can visualize and control the truck over MAVLink. It is built alongside PreciseTruck and its executable is at `build/ControlTower`.
+
+Run it from the project root:
+
+```bash
+./build/ControlTower
+```
+
+Once running:
+
+1. In ControlTower, go to **Connections** and add an UDP connection matching the truck's `control_tower_ip` and `control_tower_port` (default: `127.0.0.1:14540`).
+2. The truck will appear on the map after connecting. You can visualize its position, upload waypoint routes, and monitor its state in real time.
+
+> ControlTower and PreciseTruck can run on the same machine (using `127.0.0.1`) or on separate machines on the same network, as long as the IP/port settings match.
 
 ## 🐳 Docker Container
 
@@ -108,10 +130,10 @@ From the project root directory:
 docker build -t precise-truck:latest .
 ```
 
-Run the RCTruck (from any directory) using a JSON configuration file:
+Run PreciseTruck (from any directory) using a JSON configuration file:
 
 ```bash
-docker run --rm --network host precise-truck:latest ./RCTruck --config config/truck1.json
+docker run --rm --network host precise-truck:latest ./PreciseTruck --config config/truck1.json
 ```
 
 ### Resetting State for Chaos Experiments
@@ -123,7 +145,7 @@ The container is designed to be **stateless** - no persistent volumes are used b
 docker stop precise-truck
 
 # Start a fresh instance
-docker run --rm --name precise-truck --network host precise-truck:latest ./RCTruck --config config/truck1.json
+docker run --rm --name precise-truck --network host precise-truck:latest ./PreciseTruck --config config/truck1.json
 ```
 
 Each container restart provides a completely clean environment, ideal for repeatable chaos engineering experiments.

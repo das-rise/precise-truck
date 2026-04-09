@@ -64,7 +64,7 @@ RUN ldconfig
 RUN useradd -m -s /bin/bash rctruck
 
 # Copy built executables
-COPY --from=builder /precise-truck/build/RCTruck /home/rctruck/
+COPY --from=builder /precise-truck/build/PreciseTruck /home/rctruck/
 RUN chown -R rctruck:rctruck /home/rctruck/
 
 # Copy configuration files from project
