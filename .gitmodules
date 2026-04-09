@@ -1,3 +1,6 @@
 [submodule "WayWise"]
 	path = WayWise
 	url = ../WayWise.git
+[submodule "ControlTower"]
+	path = ControlTower
+	url = git@github.com:das-rise/ControlTower.git
