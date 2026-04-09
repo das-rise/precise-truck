@@ -3,6 +3,7 @@ build/
 .vscode/
 log/
 tools/MAVSDK
+osm_tiles/
 
 # Downloaded binaries
 *.deb

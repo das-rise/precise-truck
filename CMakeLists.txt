@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(RCTruck LANGUAGES CXX C)
+project(PreciseTruck LANGUAGES CXX C)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -31,66 +31,10 @@ endif()
 #    endif()
 #endif()
 
-find_package(Qt5 COMPONENTS Core Network SerialPort REQUIRED)
-find_package(MAVSDK REQUIRED)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
-add_executable(RCTruck
-    WayWise/autopilot/purepursuitwaypointfollower.cpp
-    WayWise/autopilot/purepursuitwaypointfollower.h
-    WayWise/autopilot/waypointfollower.h
-    WayWise/autopilot/emergencybrake.cpp
-    WayWise/autopilot/followpoint.cpp
-    WayWise/communication/jsonstreamparsertcp.cpp
-    WayWise/communication/vehicleserver.h
-    WayWise/communication/mavsdkvehicleserver.cpp
-    WayWise/communication/vehicleconnections/vehicleconnection.cpp
-    WayWise/communication/mavlinkparameterserver.cpp
-    WayWise/communication/parameterserver.cpp
-    WayWise/core/pospoint.cpp
-    WayWise/core/simplewatchdog.cpp
-    WayWise/core/vbytearray.cpp
-    WayWise/core/geometry.h
-    WayWise/external/pi-bno055/i2c_bno055.c
-    WayWise/external/pi-as5600/driver_as5600.c
-    WayWise/external/pi-as5600/iic.c
-    WayWise/external/pi-as5600/driver_as5600_basic.c
-    WayWise/external/pi-as5600/raspberrypi4b_driver_as5600_interface.c
-    WayWise/external/vesc/vescpacket.cpp
-    WayWise/routeplanning/routeutils.cpp
-    WayWise/routeplanning/routeutils.h
-    WayWise/sensors/camera/depthaicamera.cpp
-    WayWise/sensors/camera/gimbal.h
-    WayWise/sensors/fusion/sdvpvehiclepositionfuser.cpp
-    WayWise/sensors/gnss/rtcm3_simple.cpp
-    WayWise/sensors/gnss/rtcmclient.cpp
-    WayWise/sensors/gnss/ublox.cpp
-    WayWise/sensors/gnss/ubloxrover.cpp
-    WayWise/sensors/gnss/gnssreceiver.cpp
-    WayWise/sensors/imu/bno055orientationupdater.cpp
-    WayWise/sensors/imu/imuorientationupdater.cpp
-    WayWise/sensors/angle/as5600updater.cpp
-    WayWise/sensors/angle/anglesensorupdater.cpp
-    WayWise/vehicles/carstate.cpp
-    WayWise/vehicles/controller/carmovementcontroller.cpp
-    WayWise/vehicles/controller/motorcontroller.h
-    WayWise/vehicles/controller/movementcontroller.cpp
-    WayWise/vehicles/controller/servocontroller.cpp
-    WayWise/vehicles/controller/vescmotorcontroller.cpp
-    WayWise/vehicles/objectstate.cpp
-    WayWise/vehicles/vehiclestate.cpp
-    WayWise/vehicles/truckstate.cpp
-    WayWise/vehicles/trailerstate.cpp
-    WayWise/logger/logger.cpp
-    main.cpp
-)
+# Build PreciseTruck
+add_subdirectory(PreciseTruck PreciseTruck_build)
 
-target_include_directories(RCTruck PRIVATE WayWise/)
-
-target_link_libraries(RCTruck
-    PRIVATE Qt5::Network
-    PRIVATE Qt5::SerialPort
-    PRIVATE MAVSDK::mavsdk
-    PRIVATE gpiodcxx
-)
-
-add_definitions(-DPROJECT_ROOT="${CMAKE_SOURCE_DIR}")
+# Build ControlTower
+add_subdirectory(ControlTower ControlTower_build)
