@@ -78,6 +78,6 @@ WORKDIR /home/rctruck
 # Labels for container metadata
 LABEL org.opencontainers.image.title="PRECISE Truck"
 LABEL org.opencontainers.image.description="An autonomous Truck based on WayWise for Precise Security Chaos Engineering experiments."
-LABEL org.opencontainers.image.source="https://github.com/RISE-Dependable-Transport-Systems/precise-truck"
+LABEL org.opencontainers.image.source="https://github.com/das-rise/precise-truck"
 LABEL org.opencontainers.image.vendor="RISE Research Institutes of Sweden"
 LABEL org.opencontainers.image.licenses="GPL-3.0"

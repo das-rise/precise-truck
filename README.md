@@ -1,6 +1,6 @@
 # PRECISE Truck
 
-The PRECISE Truck is an adaptation of the autonomous [RCCar](https://github.com/RISE-Dependable-Transport-Systems/RCCar) tailored for PRECISE project to run Security Chaos Engineering experiments and validation work.
+The PRECISE Truck is an adaptation of the autonomous [RCCar](https://github.com/das-rise/RCCar) tailored for PRECISE project to run Security Chaos Engineering experiments and validation work.
 
 ## Installing Prerequisites (on Ubuntu 22.04/24.04) & Building
 
@@ -12,7 +12,7 @@ Install latest **MAVSDK 2.x** (support for version 3.x is not yet available).
   sudo dpkg -i libmavsdk-dev*.deb
   ```
 
-- **Option 2:** Build MAVSDK from source. Simple [scripts](https://github.com/RISE-Dependable-Transport-Systems/WayWise/tree/main/tools/build_MAVSDK) can be found in the **WayWise** repository.
+- **Option 2:** Build MAVSDK from source. Simple [scripts](https://github.com/das-rise/WayWise/tree/main/tools/build_MAVSDK) can be found in the **WayWise** repository.
 
 Install other dependencies:
 
@@ -23,7 +23,7 @@ sudo apt install git build-essential cmake libqt5serialport5-dev libgpiod-dev
 Clone the repository in any directory (workspace) and build:
 
 ```bash
-git clone git@github.com:RISE-Dependable-Transport-Systems/precise-truck.git precise-truck
+git clone git@github.com:das-rise/precise-truck.git precise-truck
 cd precise-truck
 git submodule update --init
 cmake -S . -B build
@@ -105,7 +105,7 @@ From the project root directory:
 
 ## Running ControlTower
 
-[ControlTower](https://github.com/RISE-Dependable-Transport-Systems/ControlTower) is a ground control station UI (built as part of this project) that can visualize and control the truck over MAVLink. It is built alongside PreciseTruck and its executable is at `build/ControlTower`.
+[ControlTower](https://github.com/das-rise/ControlTower) is a ground control station UI (built as part of this project) that can visualize and control the truck over MAVLink. It is built alongside PreciseTruck and its executable is at `build/ControlTower`.
 
 Run it from the project root:
 
