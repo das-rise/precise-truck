@@ -61,19 +61,19 @@ COPY --from=builder /usr/lib/libmavsdk*.so* /usr/lib/
 RUN ldconfig
 
 # Create non-root user for running the application
-RUN useradd -m -s /bin/bash rctruck
+RUN useradd -m -s /bin/bash precisetruck
 
 # Copy built executables
-COPY --from=builder /precise-truck/build/PreciseTruck /home/rctruck/
-RUN chown -R rctruck:rctruck /home/rctruck/
+COPY --from=builder /precise-truck/build/PreciseTruck /home/precisetruck/
+RUN chown -R precisetruck:precisetruck /home/precisetruck/
 
 # Copy configuration files from project
-COPY --from=builder /precise-truck/config /home/rctruck/config
-RUN chown -R rctruck:rctruck /home/rctruck/config
+COPY --from=builder /precise-truck/config /home/precisetruck/config
+RUN chown -R precisetruck:precisetruck /home/precisetruck/config
 
 # Set user and working directory
-USER rctruck
-WORKDIR /home/rctruck
+USER precisetruck
+WORKDIR /home/precisetruck
 
 # Labels for container metadata
 LABEL org.opencontainers.image.title="PRECISE Truck"
