@@ -1,5 +1,7 @@
 # PRECISE Truck
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/das-rise/precise-truck)
+
 The PRECISE Truck is an adaptation of the autonomous [RCCar](https://github.com/das-rise/RCCar) tailored for PRECISE project to run Security Chaos Engineering experiments and validation work.
 
 ## Installing Prerequisites (on Ubuntu 22.04/24.04) & Building
